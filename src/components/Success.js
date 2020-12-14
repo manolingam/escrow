@@ -6,7 +6,7 @@ const Success = (props) => {
   return (
     <div className='success'>
       <motion.h3
-        initial={{ y: -250 }}
+        initial={{ y: -350 }}
         animate={{ y: -10 }}
         transition={{ delay: 0.5 }}
       >
@@ -18,7 +18,7 @@ const Success = (props) => {
         transition={{ delay: 0.6, duration: 0.5 }}
       >
         You can check the progress of your transaction{' '}
-        <a href={`https://etherscan.io/tx/${props.hash}`}>here.</a>
+        <a href={`https://kovan.etherscan.io/tx/${props.hash}`}>here.</a>
       </motion.p>
       <motion.button
         className='custom-button'

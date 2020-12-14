@@ -17,8 +17,8 @@ import { AppContext } from '../context/AppContext';
 import milestone_payments_calculation from '../utils/BigNumberCalc';
 
 const {
-  MainnetDAI,
-  MainnetWETH
+  KovanDAI,
+  KovanWETH
 } = require('../utils/Constants').contract_addresses;
 
 class Form extends Component {
@@ -147,9 +147,9 @@ class Form extends Component {
       return alert('Safety valve date cannot be today.');
 
     if (payment_token === 'DAI') {
-      payment_token_address = MainnetDAI;
+      payment_token_address = KovanDAI;
     } else if (payment_token === 'wETH') {
-      payment_token_address = MainnetWETH;
+      payment_token_address = KovanWETH;
     }
 
     let index = await locker.methods.lockerCount().call();

@@ -14,7 +14,7 @@ import EscrowCalc from '../utils/EscrowCalc';
 import '../sass/Pages.scss';
 import '../sass/ResponsivePages.scss';
 
-const { Locker } = require('../utils/Constants').contract_addresses;
+const { KovanLocker } = require('../utils/Constants').contract_addresses;
 
 const Escrow = (props) => {
   const context = useContext(AppContext);
@@ -34,7 +34,7 @@ const Escrow = (props) => {
       return alert('Insufficient funds! Please add more DAI to you wallet.');
 
     let allowance = await contract.methods
-      .allowance(context.address, Locker)
+      .allowance(context.address, KovanLocker)
       .call();
 
     try {
@@ -42,7 +42,7 @@ const Escrow = (props) => {
       if (state.tokenType === 'DAI') {
         if (allowance < context.cap) {
           await contract.methods
-            .approve(Locker, context.cap)
+            .approve(KovanLocker, context.cap)
             .send({ from: context.address });
         }
 
@@ -59,7 +59,7 @@ const Escrow = (props) => {
         if (state.wETHBalance >= context.cap) {
           if (allowance < context.cap) {
             await contract.methods
-              .approve(Locker, context.cap)
+              .approve(KovanLocker, context.cap)
               .send({ from: context.address });
           }
           await context.locker.methods
@@ -345,7 +345,7 @@ const Escrow = (props) => {
         <div className='modal-background'></div>
         <Instructions
           escrow_index={context.escrow_index}
-          locker_address={Locker}
+          locker_address={KovanLocker}
         />
         <button
           className='modal-close is-large'

@@ -13,8 +13,8 @@ const HomeButtonManager = (
   if (context.isLoading) {
     component = <Loading />;
   } else if (validId) {
-    if (context.chainID.toString() !== '1') {
-      component = <p id='network-error-message'>Switch to Mainnet</p>;
+    if (context.chainID.toString() !== '42') {
+      component = <p id='network-error-message'>Switch to Kovan</p>;
     } else if (context.address) {
       if (context.escrow_index !== '') {
         component = (

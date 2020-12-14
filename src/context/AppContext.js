@@ -9,9 +9,9 @@ const lockerABI = require('../abi/Locker.json');
 const DAI_ABI = require('../abi/DaiAbi.json');
 const wETH_ABI = require('../abi/wETHAbi.json');
 const {
-  Locker,
-  MainnetDAI,
-  MainnetWETH,
+  KovanLocker,
+  KovanDAI,
+  KovanWETH,
   RaidGuild,
   LexArbitration
 } = require('../utils/Constants').contract_addresses;
@@ -26,7 +26,7 @@ const providerOptions = {
 };
 
 const web3Modal = new Web3Modal({
-  network: 'mainnet',
+  network: 'kovan',
   cacheProvider: false,
   providerOptions
 });
@@ -72,12 +72,12 @@ class AppContextProvider extends Component {
   async componentDidMount() {
     const web3 = new Web3(
       new Web3.providers.HttpProvider(
-        `https://mainnet.infura.io/v3/${process.env.REACT_APP_INFURA_ID}`
+        `https://kovan.infura.io/v3/${process.env.REACT_APP_INFURA_ID}`
       )
     );
-    const locker = new web3.eth.Contract(lockerABI, Locker);
-    const DAI = new web3.eth.Contract(DAI_ABI, MainnetDAI);
-    const wETH = new web3.eth.Contract(wETH_ABI, MainnetWETH);
+    const locker = new web3.eth.Contract(lockerABI, KovanLocker);
+    const DAI = new web3.eth.Contract(DAI_ABI, KovanDAI);
+    const wETH = new web3.eth.Contract(wETH_ABI, KovanWETH);
     const chainID = await web3.eth.net.getId();
 
     this.setState({ web3, locker, DAI, wETH, chainID });
@@ -154,16 +154,16 @@ class AppContextProvider extends Component {
       const provider = await web3Modal.connect();
       const web3 = new Web3(provider);
       const accounts = await web3.eth.getAccounts();
-      const locker = new web3.eth.Contract(lockerABI, Locker);
-      const DAI = new web3.eth.Contract(DAI_ABI, MainnetDAI);
-      const wETH = new web3.eth.Contract(wETH_ABI, MainnetWETH);
+      const locker = new web3.eth.Contract(lockerABI, KovanLocker);
+      const DAI = new web3.eth.Contract(DAI_ABI, KovanDAI);
+      const wETH = new web3.eth.Contract(wETH_ABI, KovanWETH);
       let chainID = await web3.eth.net.getId();
 
       let ethers_locker = new ethers.Contract(
-        Locker,
+        KovanLocker,
         lockerABI,
         new ethers.providers.InfuraProvider(
-          'homestead',
+          'kovan',
           process.env.REACT_APP_INFURA_ID
         )
       );
