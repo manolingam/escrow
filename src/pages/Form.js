@@ -306,7 +306,7 @@ class Form extends Component {
               <div>
                 <label>Total Raid Payment</label>
                 <br />
-                <input type='number' id='total_payment' />
+                <input type='number' id='total_payment' min='1' />
               </div>
               <div>
                 <label>Payment Token</label>
@@ -319,7 +319,7 @@ class Form extends Component {
             </div>
 
             <label>Number of Milestones</label>
-            <input type='number' id='milestones' />
+            <input type='number' id='milestones' min='1' />
 
             <div id='date-picker'>
               <label>Client Safety Valve Withdrawal Date</label>
