@@ -76,7 +76,7 @@ class Form extends Component {
         alert('Total payment cannot be zero, negative or empty!');
         total_payment_input.value = '1';
         this.setState({
-          milestones: 1
+          total_payment: 1
         });
         return;
       }
@@ -108,7 +108,7 @@ class Form extends Component {
         alert('Milestone cannot be zero, negative or empty!');
         milestones_input.value = '1';
         this.setState({
-          total_payment: 1
+          milestones: 1
         });
         return;
       }
